@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anilkumar V — Senior QA Lead · Business Analyst · Entrepreneur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3EEE3;
+    --cream-deep:#EAE3D3;
+    --white:#FFFFFF;
+    --ink:#26251F;
+    --gray:#6E6C63;
+    --gray-light:#96938A;
+    --red:#D6483C;
+    --red-dark:#B23A2F;
+    --red-tint:#FBE9E6;
+    --btn-dark:#4A4A45;
+    --line:rgba(38,37,31,0.12);
+    --line-soft:rgba(38,37,31,0.07);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--red); color:var(--white);}
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    background:rgba(243,238,227,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; height:78px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:1.3rem; letter-spacing:0.02em; text-transform:uppercase;}
+  .logo svg{flex-shrink:0;}
+  .navlinks{display:flex; gap:30px; font-size:0.94rem; color:var(--gray); font-weight:500;}
+  .navlinks a{position:relative; padding:6px 0; transition:color .2s;}
+  .navlinks a::before{content:'•'; color:var(--red); opacity:0; margin-right:6px; transition:opacity .2s;}
+  .navlinks a.active{color:var(--ink);}
+  .navlinks a.active::before{opacity:1;}
+  .navlinks a:hover{color:var(--ink);}
+  .nav-actions{display:flex; gap:12px; align-items:center;}
+  .nav-btn{
+    font-size:0.86rem; font-weight:600; padding:11px 20px; border-radius:9px; white-space:nowrap;
+    transition:all .15s;
+  }
+  .nav-btn.solid{background:var(--btn-dark); color:var(--white);}
+  .nav-btn.solid:hover{background:var(--ink);}
+  .nav-btn.outline{border:1px solid var(--line); color:var(--ink); background:transparent;}
+  .nav-btn.outline:hover{border-color:var(--gray-light); background:var(--white);}
+  .burger{display:none; width:38px; height:38px; border-radius:8px; border:1px solid var(--line); align-items:center; justify-content:center; background:var(--white);}
+  .burger span, .burger span::before, .burger span::after{content:''; display:block; width:16px; height:2px; background:var(--ink); position:relative; transition:.2s;}
+  .burger span::before{position:absolute; top:-5px;}
+  .burger span::after{position:absolute; top:5px;}
+  .mobile-menu{display:none; flex-direction:column; gap:2px; padding:14px 32px 22px; border-top:1px solid var(--line); background:var(--cream);}
+  .mobile-menu a{padding:12px 4px; font-weight:500; color:var(--ink); border-bottom:1px solid var(--line-soft);}
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    .nav-btn.outline{display:none;}
+    .burger{display:flex;}
+  }
+  header.open .mobile-menu{display:flex;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:168px 0 80px;}
+  .hero-top{display:grid; grid-template-columns:1.35fr 1fr; gap:56px; align-items:start;}
+  @media (max-width:900px){.hero-top{grid-template-columns:1fr;}}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.92rem; font-weight:600; color:var(--red);
+    margin-bottom:22px;
+  }
+  .eyebrow::before{content:'●'; font-size:0.6rem;}
+  .hero h1{
+    font-size:clamp(2.6rem, 6.4vw, 5.4rem);
+    font-weight:800; letter-spacing:0.005em; line-height:0.98; color:var(--red);
+  }
+  .hero-side{padding-top:14px;}
+  .hero-side p.lede{font-size:1.12rem; color:var(--gray); max-width:440px;}
+  .hero-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    padding:15px 26px; border-radius:10px; font-weight:600; font-size:0.94rem;
+    display:inline-flex; align-items:center; gap:8px; transition:all .2s;
+  }
+  .btn-primary{background:var(--red); color:var(--white);}
+  .btn-primary:hover{background:var(--red-dark); transform:translateY(-1px);}
+  .btn-secondary{background:var(--cream-deep); color:var(--ink); border:1px solid var(--line);}
+  .btn-secondary:hover{background:var(--white); border-color:var(--gray-light);}
+
+  .stat-panel{
+    margin-top:64px; display:grid; grid-template-columns:repeat(4,1fr);
+    border-radius:16px; overflow:hidden; border:1px solid var(--line);
+  }
+  @media (max-width:820px){.stat-panel{grid-template-columns:1fr 1fr;}}
+  .stat-cell{background:var(--white); padding:26px 24px; border-right:1px solid var(--line); border-bottom:1px solid transparent;}
+  .stat-cell:nth-child(4n){border-right:none;}
+  @media (max-width:820px){.stat-cell:nth-child(2n){border-right:none;} .stat-cell:nth-child(n+3){border-top:1px solid var(--line);}}
+  .stat-num{font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:1.5rem; color:var(--red);}
+  .stat-lbl{margin-top:8px; font-size:0.85rem; color:var(--gray);}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:110px 0;}
+  .section-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--red);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px; display:block; font-weight:500;
+  }
+  .section-head{max-width:640px; margin-bottom:60px;}
+  .section-head h2{font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; font-size:clamp(2rem, 4vw, 2.9rem); font-weight:800; letter-spacing:0.01em;}
+  .section-head p{margin-top:14px; color:var(--gray); font-size:1.02rem;}
+
+  /* ---------- PIVOT TIMELINE ---------- */
+  .lanes{position:relative;}
+  .lane-header{display:grid; grid-template-columns:1fr 100px 1fr; gap:0; margin-bottom:8px;}
+  .lane-title{font-weight:700; font-size:0.92rem; padding:10px 0;}
+  .lane-title.left{color:var(--gray); text-align:right; padding-right:24px;}
+  .lane-title.right{color:var(--red); padding-left:24px;}
+  .lane-title.mid{text-align:center; color:var(--gray-light); font-family:'IBM Plex Mono', monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em;}
+
+  .row{display:grid; grid-template-columns:1fr 100px 1fr; align-items:stretch; position:relative;}
+  .rail{position:relative; display:flex; justify-content:center;}
+  .rail::before{content:''; position:absolute; top:0; bottom:0; width:2px; background:var(--line); left:50%; transform:translateX(-50%);}
+  .rail .dot{width:13px; height:13px; border-radius:50%; background:var(--white); border:2px solid var(--gray-light); margin-top:26px; position:relative; z-index:1;}
+  .row:last-child .rail::before{bottom:50%;}
+  .row.merge .rail .dot{background:var(--red); border-color:var(--red); width:17px; height:17px;}
+
+  .card-pivot{background:var(--white); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:12px 0;}
+  .card-pivot .role{font-weight:700; font-size:1rem;}
+  .card-pivot .yr{font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:var(--gray-light); margin-top:4px;}
+  .card-pivot .desc{margin-top:10px; font-size:0.9rem; color:var(--gray);}
+  .row .card-pivot.left{margin-right:24px;}
+  .row .card-pivot.right{margin-left:24px;}
+  .row.merge{grid-template-columns:1fr; justify-items:center; text-align:center; padding-top:8px;}
+  .row.merge .rail{display:none;}
+  .now-badge{background:var(--red); color:var(--white); font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:0.85rem; padding:14px 28px; border-radius:999px; margin-top:6px;}
+  @media (max-width:760px){
+    .lane-header{display:none;}
+    .row{grid-template-columns:1fr;}
+    .rail{display:none;}
+    .row .card-pivot.left, .row .card-pivot.right{margin:12px 0;}
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  @media (max-width:760px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-col{background:var(--white); border:1px solid var(--line); border-radius:16px; padding:28px;}
+  .skill-col h3{font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; font-size:1.3rem; margin-bottom:18px; letter-spacing:0.01em;}
+  .skill-col.delivery h3{color:var(--ink);}
+  .skill-col.growth h3{color:var(--red);}
+  .chip-set{display:flex; flex-wrap:wrap; gap:9px;}
+  .chip{font-size:0.82rem; padding:8px 14px; border-radius:8px; border:1px solid var(--line); color:var(--gray); font-family:'IBM Plex Mono', monospace; background:var(--cream);}
+  .skill-col.delivery .chip:hover{border-color:var(--ink); color:var(--ink);}
+  .skill-col.growth .chip:hover{border-color:var(--red); color:var(--red);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-item{border-top:1px solid var(--line); padding:34px 0; display:grid; grid-template-columns:260px 1fr; gap:32px;}
+  .exp-item:last-child{border-bottom:1px solid var(--line);}
+  @media (max-width:760px){.exp-item{grid-template-columns:1fr; gap:12px;}}
+  .exp-meta .company{font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; font-weight:800; font-size:1.3rem;}
+  .exp-meta .role{color:var(--gray); font-size:0.92rem; margin-top:4px;}
+  .exp-meta .dates{font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color:var(--red); margin-top:10px;}
+  .exp-body ul{list-style:none;}
+  .exp-body li{position:relative; padding-left:20px; margin-bottom:12px; color:var(--ink); font-size:0.94rem;}
+  .exp-body li::before{content:'—'; position:absolute; left:0; color:var(--red);}
+
+  /* ---------- VENTURES ---------- */
+  .ventures-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  @media (max-width:820px){.ventures-grid{grid-template-columns:1fr;}}
+  .venture-card{background:var(--white); border:1px solid var(--line); border-radius:18px; padding:34px;}
+  .venture-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px;}
+  .venture-top h3{font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; font-size:1.5rem;}
+  .venture-badge{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; padding:7px 14px; border-radius:999px; white-space:nowrap; font-weight:600;}
+  .venture-badge.red{background:var(--red-tint); color:var(--red);}
+  .venture-badge.dark{background:var(--cream-deep); color:var(--ink);}
+  .venture-card p.summary{color:var(--gray); font-size:0.94rem; margin-bottom:20px;}
+  .venture-tiles{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .venture-tile{border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:var(--cream);}
+  .venture-tile .t-num{font-family:'IBM Plex Mono', monospace; font-weight:600; color:var(--red); font-size:0.92rem;}
+  .venture-tile .t-lbl{font-size:0.74rem; color:var(--gray); margin-top:4px;}
+
+  /* ---------- STUDIES & ACHIEVEMENTS ---------- */
+  .list-card{background:var(--white); border:1px solid var(--line); border-radius:16px; padding:28px;}
+  .list-card h3{font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; font-size:1.2rem; margin-bottom:18px;}
+  .list-row{display:flex; justify-content:space-between; gap:12px; padding:14px 0; border-top:1px solid var(--line-soft); font-size:0.94rem;}
+  .list-row:first-of-type{border-top:none;}
+  .list-row .name{color:var(--ink);}
+  .list-row .tag{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--gray); white-space:nowrap;}
+  .achieve-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:820px){.achieve-grid{grid-template-columns:1fr;}}
+  .achieve-card{background:var(--white); border:1px solid var(--line); border-radius:16px; padding:26px;}
+  .achieve-card .icon{font-size:1.3rem; margin-bottom:14px; color:var(--red);}
+  .achieve-card h4{font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; font-size:1.1rem; margin-bottom:10px;}
+  .achieve-card p{font-size:0.88rem; color:var(--gray);}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:100px 0 60px; text-align:center;}
+  footer h2{font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; font-size:clamp(2.1rem,5.6vw,3.8rem); font-weight:800; color:var(--red);}
+  .contact-row{display:flex; justify-content:center; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .foot-meta{margin-top:70px; display:flex; justify-content:space-between; color:var(--gray-light); font-size:0.8rem; font-family:'IBM Plex Mono', monospace; flex-wrap:wrap; gap:10px;}
+
+  [data-reveal]{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  [data-reveal].in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    [data-reveal]{opacity:1; transform:none; transition:none;}
+  }
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--red); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <div class="logo">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <path d="M13 2 L23 8 V18 L13 24 L3 18 V8 Z" stroke="#D6483C" stroke-width="2" fill="none"/>
+      </svg>
+      Anilkumar V
+    </div>
+    <div class="navlinks" id="navlinks">
+      <a href="#pivot" data-nav>The Pivot</a>
+      <a href="#skills" data-nav>Skills</a>
+      <a href="#experience" data-nav>Experience</a>
+      <a href="#ventures" data-nav>Ventures</a>
+      <a href="#studies" data-nav>Studies</a>
+      <a href="#contact" data-nav>Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a class="nav-btn outline" href="https://www.linkedin.com/in/anilkumar-v-a7743416a/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="nav-btn solid" href="mailto:vvanil47@gmail.com">Get in Touch</a>
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#pivot">The Pivot</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#ventures">Ventures</a>
+    <a href="#studies">Studies</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow">Chennai, India — open to Digital Marketing &amp; Delivery roles</div>
+        <h1 class="display">6+ years of<br>Cross-Platform Technical Lead</h1>
+      </div>
+      <div class="hero-side">
+        <p class="lede">Hi, I'm Anilkumar - a cross-functional technical lead who's spent 6+ years running Quality Engineering, Business Analysis and Product Delivery for enterprise insurance platforms, while building a profitable Airbnb business and freelance Amazon Ads practice on the side.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:vvanil47@gmail.com">Email me</a>
+          <a class="btn btn-secondary" href="tel:8838119884">Call: +91 88381 19884</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-panel" data-reveal>
+      <div class="stat-cell"><div class="stat-num">6+ yrs</div><div class="stat-lbl">Quality, BA &amp; delivery leadership</div></div>
+      <div class="stat-cell"><div class="stat-num">10+ member</div><div class="stat-lbl">Team managed</div></div>
+      <div class="stat-cell"><div class="stat-num">1 lakh</div><div class="stat-lbl">Airbnb revenue generated monthly</div></div>
+      <div class="stat-cell"><div class="stat-num">3 roles</div><div class="stat-lbl">QA lead, BA &amp; low code developer - at once</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="pivot">
+  <div class="wrap">
+    <span class="section-tag">// The transition</span>
+    <div class="section-head">
+      <h2 class="display">Delivery on one side. Ventures on the other.</h2>
+      <p>Quality Engineering taught me to gather requirements, weigh risk and ship under pressure. Since 2024, I've put that same instinct into building things I own outright, a freelance Amazon Ads practice and a profitable short-term rental business.</p>
+    </div>
+
+    <div class="lanes" data-reveal>
+      <div class="lane-header">
+        <div class="lane-title left">Quality Engineering &amp; Delivery</div>
+        <div class="lane-title mid">Timeline</div>
+        <div class="lane-title right">Business &amp; Ventures</div>
+      </div>
+
+      <div class="row">
+        <div class="card-pivot left">
+          <div class="role">Test Analyst — Luminad</div>
+          <div class="yr">Aug 2020 – May 2022</div>
+          <div class="desc">Designed comprehensive test scenarios across business modules and built Power BI RCA dashboards for sprint quality insight.</div>
+        </div>
+        <div class="rail"><div class="dot"></div></div>
+        <div></div>
+      </div>
+
+      <div class="row">
+        <div class="card-pivot left">
+          <div class="role">Software QA Engineer - Quess GTS (PNC Insurance)</div>
+          <div class="yr">Jun 2022 – Apr 2025</div>
+          <div class="desc">Ran functional, integration, regression and API testing; built Power BI dashboards and served as acting team lead during critical releases.</div>
+        </div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="card-pivot right">
+          <div class="role">Freelance Amazon Ads Specialist</div>
+          <div class="yr">2024 – Present</div>
+          <div class="desc">Manage Sponsored Products &amp; Sponsored Brands campaigns - optimizing ACoS, ROAS, CTR and keyword strategy through data-driven decisions.</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card-pivot left">
+          <div class="role">Senior QA Lead | Business Analyst | Product Delivery Specialist — Digitide</div>
+          <div class="yr">Apr 2025 – Jun 2026</div>
+          <div class="desc">Led 10+ engineers across Agile delivery, owned Business Analysis activities, and shipped production UI changes on the Neutrinos Low-Code Platform.</div>
+        </div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="card-pivot right">
+          <div class="role">Founder &amp; Property Operations Manager — Airbnb</div>
+          <div class="yr">2025 – Present</div>
+          <div class="desc">Built and ran a profitable short-term rental business generating multi-lakh revenue through consistent occupancy and operational excellence.</div>
+        </div>
+      </div>
+
+      <div class="row merge">
+        <div class="now-badge">→ NOW: SENIOR QA LEAD · BUSINESS ANALYST · ENTREPRENEUR</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--cream-deep);">
+  <div class="wrap">
+    <span class="section-tag">// Core competencies</span>
+    <div class="section-head">
+      <h2 class="display">One operator, two toolkits.</h2>
+      <p>Delivery skills that keep enterprise releases on track, and the business instincts that turned a side project into revenue.</p>
+    </div>
+    <div class="skills-grid" data-reveal>
+      <div class="skill-col delivery">
+        <h3>Quality Engineering &amp; Delivery</h3>
+        <div class="chip-set">
+          <span class="chip">Quality Engineering Leadership</span>
+          <span class="chip">Product &amp; Technical Delivery</span>
+          <span class="chip">Agile Scrum</span>
+          <span class="chip">Sprint Planning</span>
+          <span class="chip">Release Management</span>
+          <span class="chip">SDLC / STLC</span>
+          <span class="chip">Risk-Based Testing</span>
+          <span class="chip">Root Cause Analysis</span>
+          <span class="chip">Defect Management</span>
+          <span class="chip">Jira</span>
+          <span class="chip">Azure DevOps</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Postman</span>
+        </div>
+      </div>
+      <div class="skill-col growth">
+        <h3>Business, Growth &amp; Low-Code</h3>
+        <div class="chip-set">
+          <span class="chip">Business Analysis</span>
+          <span class="chip">Stakeholder Management</span>
+          <span class="chip">Client Management</span>
+          <span class="chip">Requirement Gathering</span>
+          <span class="chip">Feature Feasibility</span>
+          <span class="chip">Low-Code Dev (Neutrinos)</span>
+          <span class="chip">Frontend UI Development</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">Amazon Ads / PPC</span>
+          <span class="chip">Google Analytics</span>
+          <span class="chip">Leadership</span>
+          <span class="chip">Team Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <span class="section-tag">// Track record</span>
+    <div class="section-head">
+      <h2 class="display">Experience</h2>
+      <p>From testing modules to owning delivery, business analysis and two ventures of my own.</p>
+    </div>
+
+    <div data-reveal>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="company">Digitide</div>
+          <div class="role">Senior QA Lead | Business Analyst | Product Delivery Specialist</div>
+          <div class="dates">APR 2025 — JUN 2026</div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Led a cross-functional team of 10+ QA engineers, ensuring timely delivery of enterprise insurance products through Agile methodologies.</li>
+            <li>Owned sprint planning, daily stand-ups, release planning, workload allocation and stakeholder reporting while maintaining delivery commitments.</li>
+            <li>Performed Business Analyst responsibilities - gathering requirements, validating feature feasibility, clarifying business rules and coordinating implementation with development teams.</li>
+            <li>Acted as the primary bridge between business stakeholders, developers, QA and management, ensuring alignment throughout the SDLC.</li>
+            <li>Performed detailed root cause analysis on production-critical defects, partnering with developers to accelerate fixes before release.</li>
+            <li>Developed and modified production UI components using the Neutrinos Low-Code Platform during critical delivery phases.</li>
+            <li>Prepared executive status reports, delivery dashboards and risk assessments for clients and leadership.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="company">Founder — Airbnb</div>
+          <div class="role">Property Operations Manager</div>
+          <div class="dates">2025 — PRESENT</div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Built and managed a profitable short-term rental business generating multi-lakh revenue through consistent occupancy.</li>
+            <li>Managed pricing strategy, guest communication, vendor coordination, housekeeping and business operations.</li>
+            <li>Optimized listings, customer experience and operational workflows to maximize bookings and guest satisfaction.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="company">Freelance</div>
+          <div class="role">Amazon Ads Specialist</div>
+          <div class="dates">2024 — PRESENT</div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Manage Amazon Sponsored Products and Sponsored Brands campaigns.</li>
+            <li>Optimize ACoS, ROAS, CTR and keyword strategy through data-driven decisions.</li>
+            <li>Provide campaign reporting and optimization recommendations to clients.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="company">Quess GTS</div>
+          <div class="role">Software QA Engineer · Client: PNC Insurance</div>
+          <div class="dates">JUN 2022 — APR 2025</div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Performed functional, integration, regression and API testing for enterprise insurance platforms.</li>
+            <li>Created Power BI dashboards and analyzed defect trends to support release decisions.</li>
+            <li>Coordinated with product owners, developers and stakeholders to prioritize defects and improve delivery quality.</li>
+            <li>Served as acting team lead during critical releases, coordinating workload and mentoring team members.</li>
+            <li>Rapidly mastered complex insurance business processes and implemented risk-based testing strategies focused on high-impact functionality.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="company">Luminad</div>
+          <div class="role">Test Analyst</div>
+          <div class="dates">AUG 2020 — MAY 2022</div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Designed and executed comprehensive test scenarios across multiple business modules.</li>
+            <li>Built Power BI RCA dashboards providing sprint quality insights.</li>
+            <li>Collaborated with developers and stakeholders to improve software quality and delivery efficiency.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ventures" style="background:var(--cream-deep);">
+  <div class="wrap">
+    <span class="section-tag">// Beyond the day job</span>
+    <div class="section-head">
+      <h2 class="display">Ventures I built and run myself</h2>
+      <p>Two businesses run alongside a full-time delivery role - proof the same rigor scales to owning outcomes end to end.</p>
+    </div>
+
+    <div class="ventures-grid" data-reveal>
+      <div class="venture-card">
+        <div class="venture-top">
+          <h3>Amazon Ads — Freelance</h3>
+          <span class="venture-badge red">SP · SB</span>
+        </div>
+        <p class="summary">Managing Sponsored Products and Sponsored Brands campaigns for seller clients since 2024 — turning keyword and bid data into steady performance gains.</p>
+        <div class="venture-tiles">
+          <div class="venture-tile"><div class="t-num">ACoS · ROAS · CTR</div><div class="t-lbl">Optimized weekly</div></div>
+          <div class="venture-tile"><div class="t-num">Keyword strategy</div><div class="t-lbl">Data-driven decisions</div></div>
+          <div class="venture-tile"><div class="t-num">Client reporting</div><div class="t-lbl">Ongoing recommendations</div></div>
+          <div class="venture-tile"><div class="t-num">2024 →</div><div class="t-lbl">Running since</div></div>
+        </div>
+      </div>
+
+      <div class="venture-card">
+        <div class="venture-top">
+          <h3>Airbnb</h3>
+          <span class="venture-badge dark">Business development</span>
+        </div>
+        <p class="summary">Founded and operate a short-term rental business, handling everything from pricing strategy to guest experience — generating multi-lakh revenue through consistent occupancy.</p>
+        <div class="venture-tiles">
+          <div class="venture-tile"><div class="t-num">Multi-lakh</div><div class="t-lbl">Revenue generated</div></div>
+          <div class="venture-tile"><div class="t-num">Pricing strategy</div><div class="t-lbl">Owned end to end</div></div>
+          <div class="venture-tile"><div class="t-num">Guest &amp; vendor ops</div><div class="t-lbl">Fully self-managed</div></div>
+          <div class="venture-tile"><div class="t-num">2025 →</div><div class="t-lbl">Running since</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="studies">
+  <div class="wrap">
+    <span class="section-tag">// Studies</span>
+    <div class="section-head">
+      <h2 class="display">Education &amp; Certifications</h2>
+    </div>
+    <div class="list-card" data-reveal>
+      <h3>Education</h3>
+      <div class="list-row"><span class="name">B.Tech in Computer Science Engineering</span><span class="tag">PONDICHERRY UNIVERSITY</span></div>
+      <h3 style="margin-top:28px;">Certifications</h3>
+      <div class="list-row"><span class="name">Postman API</span><span class="tag">OFFICIAL</span></div>
+      <div class="list-row"><span class="name">Advanced Excel</span><span class="tag">DATA</span></div>
+      <div class="list-row"><span class="name">Power BI</span><span class="tag">DASHBOARDS</span></div>
+      <div class="list-row"><span class="name">UiPath</span><span class="tag">AUTOMATION</span></div>
+      <div class="list-row"><span class="name">Amazon PPC</span><span class="tag">ADS</span></div>
+      <div class="list-row"><span class="name">Amazon DSP</span><span class="tag">PURSUING</span></div>
+      <div class="list-row"><span class="name">Google Ads</span><span class="tag">ADS</span></div>
+      <div class="list-row"><span class="name">Meta Blueprint</span><span class="tag">PURSUING</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements" style="background:var(--cream-deep);">
+  <div class="wrap">
+    <span class="section-tag">// Recognition</span>
+    <div class="section-head">
+      <h2 class="display">Achievements</h2>
+    </div>
+    <div class="achieve-grid" data-reveal>
+      <div class="achieve-card">
+        <div class="icon">⚡</div>
+        <h4>Rapid Agility Award</h4>
+        <p>Recognized for rapidly onboarding into a business-critical project, mastering business processes, implementing focused testing strategies, and enabling successful on-time production deployment.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="icon">▲</div>
+        <h4>QA Lead Efficiency Award</h4>
+        <p>Recognized for improving delivery efficiency and leading high-performing QA teams.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="icon">★</div>
+        <h4>Customer Satisfaction Excellence Award</h4>
+        <p>Recognized for exceptional client contribution and proactive quality improvements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="section-tag" style="justify-content:center; display:flex;">// Get in touch</span>
+    <h2 class="display">Delivery you can trust.<br>Growth you can measure.</h2>
+    <div class="contact-row">
+      <a class="btn btn-primary" href="mailto:vvanil47@gmail.com">vvanil47@gmail.com</a>
+      <a class="btn btn-secondary" href="tel:8838119884">+91 88381 19884</a>
+      <a class="btn btn-secondary" href="https://www.linkedin.com/in/anilkumar-v-a7743416a/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="foot-meta wrap">
+      <span>ANILKUMAR V — CHENNAI, INDIA</span>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // mobile menu toggle
+  const burger = document.getElementById('burgerBtn');
+  const header = document.getElementById('siteHeader');
+  burger.addEventListener('click', ()=>{
+    const isOpen = header.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a=>{
+    a.addEventListener('click', ()=> header.classList.remove('open'));
+  });
+
+  // scrollspy: highlight active nav link with a dot
+  const navLinks = document.querySelectorAll('[data-nav]');
+  const sections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href')));
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const idx = sections.indexOf(entry.target);
+      if(idx === -1) return;
+      if(entry.isIntersecting){
+        navLinks.forEach(l=>l.classList.remove('active'));
+        navLinks[idx].classList.add('active');
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(s=>{ if(s) spy.observe(s); });
+</script>
+
+</body>
+</html>
